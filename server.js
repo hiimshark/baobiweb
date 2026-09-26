@@ -67,7 +67,7 @@ const SECURITY_HEADERS = {
   "X-XSS-Protection": "1; mode=block",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-  "Content-Security-Policy": "default-src 'self'; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https: blob:; connect-src 'self' ws: http: https:;",
+  "Content-Security-Policy": "default-src 'self'; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com; frame-src 'self' https://challenges.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' ws: http: https: https://challenges.cloudflare.com;",
 };
 
 /* ------------------------------ Cấu hình ------------------------------ */
@@ -91,6 +91,13 @@ function loadConfig() {
   if (!cfg.adminPin) cfg.adminPin = "sibaobi2026";
   if (process.env.SHOP_NAME) cfg.brand.name = process.env.SHOP_NAME;
   if (process.env.SHOP_PHONE) cfg.brand.phone = process.env.SHOP_PHONE;
+  if (process.env.TURNSTILE_SITE_KEY)
+    cfg.turnstileSiteKey = process.env.TURNSTILE_SITE_KEY;
+  if (!cfg.turnstileSiteKey) cfg.turnstileSiteKey = "0x4AAAAAAFEbDSKygc5KymKl";
+  if (process.env.TURNSTILE_SECRET_KEY)
+    cfg.turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY;
+  if (!cfg.turnstileSecretKey)
+    cfg.turnstileSecretKey = "0x4AAAAAAFEbDdyEY_BZuRYQwzmqd8TWfDc";
   return cfg;
 }
 
@@ -113,6 +120,8 @@ function saveConfig(cfg) {
       ? existing.telegramChatId || ""
       : cfg.telegramChatId || "",
     telegramBotUsername: cfg.telegramBotUsername || "",
+    turnstileSiteKey: cfg.turnstileSiteKey || existing.turnstileSiteKey || "0x4AAAAAAFEbDSKygc5KymKl",
+    turnstileSecretKey: cfg.turnstileSecretKey || existing.turnstileSecretKey || "0x4AAAAAAFEbDdyEY_BZuRYQwzmqd8TWfDc",
     brand: cfg.brand || existing.brand || {},
   };
   const tmp = CONFIG_PATH + ".tmp";
@@ -204,6 +213,30 @@ function tooMany(ip, key, limit, windowMs) {
 
 function clearHits(ip, key) {
   hits.delete(key + ":" + ip);
+}
+
+async function verifyTurnstile(token, ip) {
+  const cfg = loadConfig();
+  const secret = process.env.TURNSTILE_SECRET_KEY || cfg.turnstileSecretKey;
+  if (!secret) return true;
+  if (!token) return false;
+  try {
+    const params = new URLSearchParams();
+    params.append("secret", secret);
+    params.append("response", token);
+    if (ip) params.append("remoteip", ip);
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+      signal: AbortSignal.timeout(6000),
+    });
+    const data = await res.json();
+    return Boolean(data && data.success);
+  } catch (err) {
+    console.error("Turnstile error:", err);
+    return false;
+  }
 }
 
 // Dọn bộ đếm và phiên hết hạn định kỳ.
@@ -650,7 +683,11 @@ function serve404(res) {
 
 async function handleSiteApi(res) {
   const cfg = loadConfig();
-  sendJson(res, 200, { ok: true, brand: publicBrand(cfg) });
+  sendJson(res, 200, {
+    ok: true,
+    brand: publicBrand(cfg),
+    turnstileSiteKey: cfg.turnstileSiteKey || "0x4AAAAAAFEbDSKygc5KymKl",
+  });
 }
 
 async function handleLead(req, res) {
@@ -664,6 +701,16 @@ async function handleLead(req, res) {
   const body = await readBody(req);
   if (clean(body.hp_field, 80))
     return sendJson(res, 200, { ok: true, delivered: true }); // bẫy bot
+
+  // Xác minh Cloudflare Turnstile
+  const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
+  const isHuman = await verifyTurnstile(turnstileToken, ip);
+  if (!isHuman) {
+    return sendJson(res, 400, {
+      ok: false,
+      error: "Xác minh bảo mật chống bot chưa hoàn tất hoặc thất bại. Vui lòng tích chọn xác minh.",
+    });
+  }
 
   const name = clean(body.name, 80);
   const phone = normalizePhone(body.phone);
@@ -763,6 +810,17 @@ async function handleAdmin(req, res, url) {
       });
     }
     const body = await readBody(req);
+
+    // Xác minh Cloudflare Turnstile
+    const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
+    const isHuman = await verifyTurnstile(turnstileToken, ip);
+    if (!isHuman) {
+      return sendJson(res, 400, {
+        ok: false,
+        error: "Xác minh bảo mật chống bot chưa hoàn tất hoặc thất bại. Vui lòng thử lại.",
+      });
+    }
+
     const cfg = loadConfig();
     if (!safeEqual(String(body.pin || ""), String(cfg.adminPin || ""))) {
       return sendJson(res, 401, { ok: false, error: "Mã quản trị chưa đúng." });

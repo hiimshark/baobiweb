@@ -20,7 +20,7 @@ interface AppState {
 
   // Authentication
   isAuthenticated: boolean;
-  login: (pin: string) => Promise<{ ok: boolean; error?: string }>;
+  login: (pin: string, turnstileToken?: string) => Promise<{ ok: boolean; error?: string }>;
   logout: () => void;
 
   // Real backend sync state
@@ -101,9 +101,9 @@ export const useAppStore = create<AppState>((set, get) => {
     setMobileDrawerOpen: (open: boolean) => set({ mobileDrawerOpen: open }),
 
     isAuthenticated: Boolean(localStorage.getItem('admin_pin')),
-    login: async (pin: string) => {
+    login: async (pin: string, turnstileToken?: string) => {
       try {
-        const res = await adminApi.login(pin);
+        const res = await adminApi.login(pin, turnstileToken);
         if (res && res.ok) {
           localStorage.setItem('admin_pin', pin);
           set({ isAuthenticated: true });

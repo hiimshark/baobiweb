@@ -18,8 +18,8 @@ api.interceptors.request.use((config) => {
 });
 
 export const adminApi = {
-  login: async (pin: string) => {
-    const res = await api.post('/admin/login', { pin });
+  login: async (pin: string, turnstileToken?: string) => {
+    const res = await api.post('/admin/login', { pin, turnstileToken });
     if (res.data.ok) {
       localStorage.setItem(ADMIN_PIN_KEY, pin);
     }

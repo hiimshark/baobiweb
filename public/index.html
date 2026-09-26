@@ -61,6 +61,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     <!-- Schema.org Structured Data (LocalBusiness, WholesaleStore, WebSite, ItemList, FAQPage, BreadcrumbList) -->
     <script type="application/ld+json">
@@ -1268,6 +1269,9 @@
             >
           </label>
 
+          <!-- Cloudflare Turnstile CAPTCHA -->
+          <div class="cf-turnstile" id="turnstile-consult" data-sitekey="0x4AAAAAAFEbDSKygc5KymKl" data-theme="light" style="margin: 12px 0; min-height: 65px;"></div>
+
           <p class="form-error" id="form-error" hidden></p>
 
           <div class="form-actions">
@@ -1414,6 +1418,9 @@
                 ></textarea>
               </label>
             </div>
+
+            <!-- Cloudflare Turnstile CAPTCHA -->
+            <div class="cf-turnstile" id="turnstile-sample" data-sitekey="0x4AAAAAAFEbDSKygc5KymKl" data-theme="light" style="margin: 12px 0; min-height: 65px;"></div>
 
             <p class="form-error" id="sample-form-error" hidden></p>
 

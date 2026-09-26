@@ -16,11 +16,14 @@ export const PinGate: React.FC = () => {
       return;
     }
 
+    const tokenInput = document.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement;
+    const turnstileToken = tokenInput?.value;
+
     setLoading(true);
     setErrorMessage('');
 
     try {
-      const res = await login(pin);
+      const res = await login(pin, turnstileToken);
       if (res.ok) {
         addToast({
           title: 'Đăng nhập thành công',
@@ -29,11 +32,25 @@ export const PinGate: React.FC = () => {
         });
       } else {
         setErrorMessage(res.error || 'Mã PIN quản trị không chính xác.');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((window as any).turnstile) {
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window as any).turnstile.reset();
+          } catch {}
+        }
       }
     } catch (err: any) {
       setErrorMessage(
         err.response?.data?.error || 'Mã PIN không chính xác hoặc bạn đã thử quá nhiều lần.'
       );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((window as any).turnstile) {
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).turnstile.reset();
+        } catch {}
+      }
     } finally {
       setLoading(false);
     }
@@ -91,6 +108,15 @@ export const PinGate: React.FC = () => {
                 {showPin ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
+          </div>
+
+          {/* Cloudflare Turnstile CAPTCHA */}
+          <div className="flex justify-center my-2 min-h-[65px]">
+            <div
+              className="cf-turnstile"
+              data-sitekey="0x4AAAAAAFEbDSKygc5KymKl"
+              data-theme="dark"
+            />
           </div>
 
           {errorMessage && (

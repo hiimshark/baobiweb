@@ -939,6 +939,7 @@
         qty: Number(item.qty),
         unit: item.unit,
       })),
+      turnstileToken: form.querySelector('[name="cf-turnstile-response"]')?.value || "",
     };
 
     const submitBtn = $("#submit-btn");
@@ -972,11 +973,21 @@
       const successBox = $("#consult-success");
       if (successBox) successBox.hidden = false;
       closeOverlay("cart");
+      if (window.turnstile) {
+        try {
+          window.turnstile.reset("#turnstile-consult");
+        } catch {}
+      }
     } catch (err) {
       showFormError(
         err.message ||
           "Không thể gửi đơn. Vui lòng liên hệ trực tiếp qua Zalo/Hotline.",
       );
+      if (window.turnstile) {
+        try {
+          window.turnstile.reset("#turnstile-consult");
+        } catch {}
+      }
     } finally {
       sending = false;
       if (submitBtn) {
@@ -1194,6 +1205,7 @@
       isSample: true,
       logo: false,
       items,
+      turnstileToken: form.querySelector('[name="cf-turnstile-response"]')?.value || "",
     };
 
     const submitBtn = $("#sample-submit-btn");
@@ -1225,10 +1237,20 @@
       if (contentBox) contentBox.hidden = true;
       const successBox = $("#sample-success");
       if (successBox) successBox.hidden = false;
+      if (window.turnstile) {
+        try {
+          window.turnstile.reset("#turnstile-sample");
+        } catch {}
+      }
     } catch (err) {
       if (formErr) {
         formErr.hidden = false;
         formErr.textContent = err.message || "Có lỗi xảy ra khi gửi yêu cầu.";
+      }
+      if (window.turnstile) {
+        try {
+          window.turnstile.reset("#turnstile-sample");
+        } catch {}
       }
     } finally {
       sending = false;
