@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /quan-tri
+Disallow: /quan-tri.html
+Disallow: /api/
+
+Sitemap: https://sibaobi.vn/sitemap.xml

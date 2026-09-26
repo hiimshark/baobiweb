@@ -1,0 +1,477 @@
+{
+  "PRODUCTS": [
+    {
+      "id": "tui-xoai",
+      "sku": "TX-01",
+      "name": "Túi hột xoài màu",
+      "aka": "Túi xoài",
+      "filter": "Túi xoài",
+      "badge": "Bán chạy nhất",
+      "blurb": "Túi nilon quai xách, đáy ép kiểu hột xoài. Đều màu, dai, hợp shop thời trang, mỹ phẩm và tạp hoá.",
+      "detail": "Có sẵn chất liệu HD, PE bóng dẻo và PP trong suốt. Bán theo kg, giá sỉ tốt từ 10kg trở lên. Nhận in logo 1-3 màu theo nhận diện thương hiệu. Bảng màu thực tế chốt theo mẫu lúc báo giá.",
+      "image": "/images/tui-xoai.jpg",
+      "alt": "Túi hột xoài nhiều màu đủ size đựng quần áo mỹ phẩm",
+      "unit": "kg",
+      "unitNote": "Bán theo kg, giá sỉ tốt theo số lượng.",
+      "defaultQty": 10,
+      "step": 1,
+      "moq": "Từ 10 kg / size",
+      "presets": [
+        10,
+        20,
+        50,
+        100
+      ],
+      "uses": "Shop quần áo, phụ kiện thời trang, mỹ phẩm, tạp hoá, bán hàng online",
+      "sizes": [
+        "15×23 cm",
+        "17×25 cm",
+        "20×30 cm",
+        "24×34 cm",
+        "26×40 cm",
+        "30×42 cm",
+        "35×50 cm",
+        "40×60 cm"
+      ],
+      "colors": [
+        {
+          "name": "Trắng",
+          "hex": "#f4f4f2"
+        },
+        {
+          "name": "Đỏ",
+          "hex": "#d62828"
+        },
+        {
+          "name": "Vàng",
+          "hex": "#e6b325"
+        },
+        {
+          "name": "Cam",
+          "hex": "#ef7d1a"
+        },
+        {
+          "name": "Hồng",
+          "hex": "#f284b4"
+        },
+        {
+          "name": "Xanh dương",
+          "hex": "#2f6fed"
+        },
+        {
+          "name": "Xanh lá",
+          "hex": "#2f9e57"
+        },
+        {
+          "name": "Tím",
+          "hex": "#7a4e9a"
+        },
+        {
+          "name": "Đen",
+          "hex": "#1c1c1c"
+        },
+        {
+          "name": "Trong suốt",
+          "hex": ""
+        }
+      ],
+      "specLabel": "Chất liệu",
+      "specs": [
+        "HD zin",
+        "PE dẻo",
+        "PP trong"
+      ],
+      "extraLabel": "Độ dày",
+      "extras": [
+        "Theo kho tư vấn",
+        "Mỏng (tiết kiệm)",
+        "Trung bình",
+        "Dày dặn"
+      ]
+    },
+    {
+      "id": "thung-carton",
+      "sku": "TC-02",
+      "name": "Thùng carton",
+      "aka": "Thùng giấy",
+      "filter": "Carton",
+      "badge": "",
+      "blurb": "Thùng sóng kraft hoặc trắng, 3 đến 7 lớp cứng cáp. Chuyên đóng gói ship hàng TMĐT, chuyển kho, lưu trữ.",
+      "detail": "Đa dạng kích thước tiêu chuẩn bưu cục và sàn TMĐT. Lấy số lượng lớn có thể cắt bế size riêng — ghi kích thước vào ghi chú khi tư vấn. Giá sỉ chiết khấu theo số lượng và số lớp.",
+      "image": "/images/thung-carton.jpg",
+      "alt": "Thùng carton sóng 3 lớp 5 lớp 7 lớp đóng hàng giá sỉ",
+      "unit": "cái",
+      "unitNote": "Bán theo cái, giao nguyên kiện bó 25-50 cái.",
+      "defaultQty": 50,
+      "step": 10,
+      "moq": "Từ 50 cái / size",
+      "presets": [
+        50,
+        100,
+        200,
+        500
+      ],
+      "uses": "Đóng gói hàng Shopee/Lazada/TikTok, kho vận bưu cục, chuyển dọn văn phòng nhà ở",
+      "sizes": [
+        "20×15×10 cm",
+        "25×20×15 cm",
+        "30×20×20 cm",
+        "35×25×15 cm",
+        "40×30×20 cm",
+        "40×30×30 cm",
+        "50×40×30 cm",
+        "60×40×40 cm"
+      ],
+      "colors": [
+        {
+          "name": "Nâu kraft",
+          "hex": "#b08968"
+        },
+        {
+          "name": "Trắng",
+          "hex": "#f4f4f2"
+        }
+      ],
+      "specLabel": "Số lớp sóng",
+      "specs": [
+        "3 lớp (phổ thông)",
+        "5 lớp (chịu lực)",
+        "7 lớp (hàng nặng)"
+      ],
+      "extraLabel": "",
+      "extras": []
+    },
+    {
+      "id": "tui-dan-mieng",
+      "sku": "DM-03",
+      "name": "Túi dán miệng",
+      "aka": "Túi miệng dán",
+      "filter": "Túi dán miệng",
+      "badge": "",
+      "blurb": "Túi PE / OPP có dải keo dán sẵn. Đựng phụ kiện, khẩu trang, bánh kẹo, linh kiện, quần áo cuộn.",
+      "detail": "Bề mặt trong suốt hoặc trắng đục sang trọng. Dán một lần siêu dính, chống bụi, chống ẩm. Bán theo kg. Có nhận in logo hoặc đục lỗ thông hơi theo yêu cầu.",
+      "image": "/images/tui-dan-mieng.jpg",
+      "alt": "Túi dán miệng OPP PE có keo dán đựng phụ kiện quần áo",
+      "unit": "kg",
+      "unitNote": "Bán theo kg, số lượng cái trên 1kg rất nhiều.",
+      "defaultQty": 5,
+      "step": 1,
+      "moq": "Từ 5 kg / size",
+      "presets": [
+        5,
+        10,
+        20,
+        50
+      ],
+      "uses": "Đựng quần áo xuất khẩu, linh kiện điện tử, bánh kẹo, phụ kiện trang sức",
+      "sizes": [
+        "8×12 cm",
+        "10×15 cm",
+        "12×20 cm",
+        "15×22 cm",
+        "20×30 cm",
+        "25×35 cm",
+        "30×40 cm"
+      ],
+      "colors": [
+        {
+          "name": "Trong suốt",
+          "hex": ""
+        },
+        {
+          "name": "Trắng đục",
+          "hex": "#f3efe6"
+        },
+        {
+          "name": "Bạc",
+          "hex": "#c5c9ce"
+        },
+        {
+          "name": "Vàng",
+          "hex": "#e6b325"
+        }
+      ],
+      "specLabel": "Chất liệu",
+      "specs": [
+        "OPP kính",
+        "PE dẻo"
+      ],
+      "extraLabel": "Độ dày",
+      "extras": [
+        "Theo kho tư vấn",
+        "Mỏng",
+        "Trung bình",
+        "Dày"
+      ]
+    },
+    {
+      "id": "bia-la",
+      "sku": "BL-04",
+      "name": "Bìa lá",
+      "aka": "Bìa hồ sơ",
+      "filter": "Bìa lá",
+      "badge": "",
+      "blurb": "Bìa lá nhựa PP nguyên sinh và bìa giấy cứng, từ A5 đến A3. Kẹp tài liệu, hợp đồng, chứng từ.",
+      "detail": "Nhựa trong đẹp, dẻo dai, khó gãy mép. Đầy đủ màu sắc phân loại chứng từ văn phòng. Cung cấp giá sỉ cho công ty, trường học, tiệm in ấn.",
+      "image": "/images/bia-la.jpg",
+      "alt": "Bìa lá nhựa văn phòng đủ màu kẹp tài liệu hợp đồng",
+      "unit": "cái",
+      "unitNote": "Bán theo cái, đóng xấp 10-50-100 cái.",
+      "defaultQty": 100,
+      "step": 10,
+      "moq": "Từ 50 cái / màu",
+      "presets": [
+        50,
+        100,
+        200,
+        500
+      ],
+      "uses": "Văn phòng doanh nghiệp, cơ quan nhà nước, phòng công chứng, trường học",
+      "sizes": [
+        "A5",
+        "A4",
+        "F4",
+        "A3"
+      ],
+      "colors": [
+        {
+          "name": "Trắng",
+          "hex": "#f4f4f2"
+        },
+        {
+          "name": "Xanh dương",
+          "hex": "#2f6fed"
+        },
+        {
+          "name": "Xanh lá",
+          "hex": "#2f9e57"
+        },
+        {
+          "name": "Vàng",
+          "hex": "#e6b325"
+        },
+        {
+          "name": "Đỏ",
+          "hex": "#d62828"
+        },
+        {
+          "name": "Trong suốt",
+          "hex": ""
+        },
+        {
+          "name": "Đen",
+          "hex": "#1c1c1c"
+        }
+      ],
+      "specLabel": "Chất liệu",
+      "specs": [
+        "Nhựa PP dẻo",
+        "Giấy cao cấp"
+      ],
+      "extraLabel": "",
+      "extras": []
+    },
+    {
+      "id": "thung-ho-so",
+      "sku": "HS-05",
+      "name": "Thùng đựng hồ sơ",
+      "aka": "Thùng hồ sơ",
+      "filter": "Thùng hồ sơ",
+      "badge": "",
+      "blurb": "Thùng carton có nắp rời hoặc dây gài, size A4 và F4. Chuyên cất chứng từ kế toán, hồ sơ lưu trữ.",
+      "detail": "Thiết kế chịu lực cao, xếp chồng nhiều tầng không bị sụp lún. Có tay xách hai bên hoặc nắp đậy liền tiện lợi cho việc bưng bê di dời.",
+      "image": "/images/thung-ho-so.jpg",
+      "alt": "Thùng đựng hồ sơ lưu trữ tài liệu kế toán có nắp đậy",
+      "unit": "cái",
+      "unitNote": "Bán theo cái, gấp gọn khi giao.",
+      "defaultQty": 20,
+      "step": 5,
+      "moq": "Từ 10 cái",
+      "presets": [
+        10,
+        20,
+        50,
+        100
+      ],
+      "uses": "Kho lưu trữ chứng từ ngân hàng, kế toán doanh nghiệp, thư viện, cơ quan",
+      "sizes": [
+        "A4",
+        "F4"
+      ],
+      "colors": [
+        {
+          "name": "Xanh dương",
+          "hex": "#6f8ea8"
+        },
+        {
+          "name": "Trắng",
+          "hex": "#f4f4f2"
+        },
+        {
+          "name": "Nâu kraft",
+          "hex": "#b08968"
+        }
+      ],
+      "specLabel": "Kiểu dáng",
+      "specs": [
+        "Nắp rời (truyền thống)",
+        "Có dây rút",
+        "Có quai xách"
+      ],
+      "extraLabel": "",
+      "extras": []
+    },
+    {
+      "id": "tui-chu-t",
+      "sku": "CT-06",
+      "name": "Túi chữ T",
+      "aka": "Túi đựng 1 ly",
+      "filter": "Túi chữ T",
+      "badge": "",
+      "blurb": "Túi đựng 1 ly trà sữa, cà phê mang đi. Quai dập chữ T chắc chắn, dai bền, không tuột.",
+      "detail": "Size phổ biến phù hợp ly 360ml, 500ml, 700ml đến 1 lít. Bán theo kg với giá sỉ cực tốt cho chuỗi quán trà sữa, cafe mang đi. Có thể in logo quán thương hiệu khi đủ số lượng.",
+      "image": "/images/tui-chu-t.jpg",
+      "alt": "Túi chữ T đựng một ly trà sữa cà phê mang đi giá sỉ",
+      "unit": "kg",
+      "unitNote": "Bán theo kg (1kg từ 400 - 600 cái tùy độ dày).",
+      "defaultQty": 10,
+      "step": 1,
+      "moq": "Từ 10 kg",
+      "presets": [
+        10,
+        20,
+        50,
+        100
+      ],
+      "uses": "Quán trà sữa, tiệm cafe mang đi, xe trà trái cây, nước ép",
+      "sizes": [
+        "11×23 cm",
+        "11×25 cm",
+        "12.5×24 cm",
+        "12.5×26 cm",
+        "14×28 cm"
+      ],
+      "colors": [
+        {
+          "name": "Trắng",
+          "hex": "#f4f4f2"
+        },
+        {
+          "name": "Trong suốt",
+          "hex": ""
+        },
+        {
+          "name": "Đen",
+          "hex": "#1c1c1c"
+        },
+        {
+          "name": "Đỏ",
+          "hex": "#d62828"
+        },
+        {
+          "name": "Vàng",
+          "hex": "#e6b325"
+        }
+      ],
+      "specLabel": "Chất liệu",
+      "specs": [
+        "HD zin (dai nhám)",
+        "PE trong (bóng dẻo)"
+      ],
+      "extraLabel": "Độ dày",
+      "extras": [
+        "Theo kho tư vấn",
+        "Mỏng",
+        "Trung bình",
+        "Dày dặn"
+      ]
+    },
+    {
+      "id": "tui-doi",
+      "sku": "TD-07",
+      "name": "Túi đôi",
+      "aka": "Túi đựng 2 ly",
+      "filter": "Túi đôi",
+      "badge": "",
+      "blurb": "Túi đựng 2 ly có vách ngăn ở giữa. Cầm một tay 2 ly không va đập đổ tràn.",
+      "detail": "Sản phẩm tối ưu cho các đơn hàng combo 2 ly take-away. Tiết kiệm thời gian đóng gói và đem lại trải nghiệm sang trọng, chuyên nghiệp cho khách mua trà sữa, cafe.",
+      "image": "/images/tui-doi.jpg",
+      "alt": "Túi đôi 2 ly có vách ngăn đựng trà sữa mang đi",
+      "unit": "kg",
+      "unitNote": "Bán theo kg, giá sỉ tốt cho chuỗi đồ uống.",
+      "defaultQty": 10,
+      "step": 1,
+      "moq": "Từ 10 kg",
+      "presets": [
+        10,
+        20,
+        50,
+        100
+      ],
+      "uses": "Chuỗi đồ uống take-away, quán trà sữa, cafe ship tận nơi",
+      "sizes": [
+        "22×24 cm",
+        "24×26 cm",
+        "25×28 cm"
+      ],
+      "colors": [
+        {
+          "name": "Trắng",
+          "hex": "#f4f4f2"
+        },
+        {
+          "name": "Trong suốt",
+          "hex": ""
+        },
+        {
+          "name": "Đen",
+          "hex": "#1c1c1c"
+        }
+      ],
+      "specLabel": "Chất liệu",
+      "specs": [
+        "HD dai",
+        "PE bóng dẻo"
+      ],
+      "extraLabel": "Độ dày",
+      "extras": [
+        "Theo kho tư vấn",
+        "Mỏng",
+        "Trung bình",
+        "Dày dặn"
+      ]
+    }
+  ],
+  "USES": [
+    {
+      "title": "Shop quần áo, mỹ phẩm",
+      "text": "Túi hột xoài nhiều màu, dẻo dai, in logo theo nhận diện thương hiệu.",
+      "productId": "tui-xoai",
+      "icon": "👗"
+    },
+    {
+      "title": "Ship hàng TMĐT & Kho bãi",
+      "text": "Thùng carton sóng 3–7 lớp, cứng cáp chịu lực, size chuẩn bưu cục.",
+      "productId": "thung-carton",
+      "icon": "📦"
+    },
+    {
+      "title": "Phụ kiện, hộp quà, linh kiện",
+      "text": "Túi dán miệng OPP/PE chống bụi, chống ẩm, đóng gói nhanh.",
+      "productId": "tui-dan-mieng",
+      "icon": "✨"
+    },
+    {
+      "title": "Văn phòng & Công chứng",
+      "text": "Bìa lá nhựa PP/giấy kẹp hồ sơ, hợp đồng, tài liệu chuyên nghiệp.",
+      "productId": "bia-la",
+      "icon": "📁"
+    },
+    {
+      "title": "Quán trà sữa & Đồ uống mang đi",
+      "text": "Túi chữ T & túi đôi vách ngăn cân đối, chống lắc đổ, xách êm ái.",
+      "productId": "tui-doi",
+      "icon": "🧋"
+    }
+  ]
+}

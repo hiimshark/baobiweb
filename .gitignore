@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+admin/node_modules/
+
+# Build artifacts
+admin/dist/
+dist/
+
+# Local sensitive configs (Tránh lộ Bot Token & Pin)
+config.json
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db

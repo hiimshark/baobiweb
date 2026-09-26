@@ -1,0 +1,13 @@
+{
+  "name": "kho-si-bao-bi",
+  "version": "1.0.0",
+  "description": "Hệ thống Bán hàng và Quản trị Kho Sỉ Bao Bì",
+  "main": "server.js",
+  "scripts": {
+    "build": "cd admin && npm install && npm run build",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
