@@ -803,33 +803,36 @@ async function handleAdmin(req, res, url) {
 
   if (pathname === "/api/admin/login" && req.method === "POST") {
     const ip = clientIp(req);
-    if (tooMany(ip, "pin", 10, 15 * 60 * 1000)) {
+    const body = await readBody(req);
+    const cfg = loadConfig();
+
+    // Nếu nhập đúng mã PIN thì xác minh Turnstile và đăng nhập thành công
+    if (safeEqual(String(body.pin || ""), String(cfg.adminPin || ""))) {
+      const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
+      const isHuman = await verifyTurnstile(turnstileToken, ip);
+      if (!isHuman) {
+        return sendJson(res, 400, {
+          ok: false,
+          error: "Xác minh bảo mật chống bot chưa hoàn tất hoặc thất bại. Vui lòng thử lại.",
+        });
+      }
+
+      clearHits(ip, "pin");
+      const token = crypto.randomBytes(24).toString("hex");
+      sessions.set(token, { exp: Date.now() + SESSION_MS });
+      setSessionCookie(req, res, token, SESSION_MS / 1000);
+      return sendJson(res, 200, { ok: true });
+    }
+
+    // Nếu nhập sai mã PIN mới tính lượt thử
+    if (tooMany(ip, "pin", 20, 3 * 60 * 1000)) {
       return sendJson(res, 429, {
         ok: false,
-        error: "Thử sai quá nhiều lần. Đợi 15 phút.",
-      });
-    }
-    const body = await readBody(req);
-
-    // Xác minh Cloudflare Turnstile
-    const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
-    const isHuman = await verifyTurnstile(turnstileToken, ip);
-    if (!isHuman) {
-      return sendJson(res, 400, {
-        ok: false,
-        error: "Xác minh bảo mật chống bot chưa hoàn tất hoặc thất bại. Vui lòng thử lại.",
+        error: "Thử sai quá nhiều lần. Đợi 3 phút rồi thử lại.",
       });
     }
 
-    const cfg = loadConfig();
-    if (!safeEqual(String(body.pin || ""), String(cfg.adminPin || ""))) {
-      return sendJson(res, 401, { ok: false, error: "Mã quản trị chưa đúng." });
-    }
-    clearHits(ip, "pin");
-    const token = crypto.randomBytes(24).toString("hex");
-    sessions.set(token, { exp: Date.now() + SESSION_MS });
-    setSessionCookie(req, res, token, SESSION_MS / 1000);
-    return sendJson(res, 200, { ok: true });
+    return sendJson(res, 401, { ok: false, error: "Mã quản trị chưa đúng." });
   }
 
   if (pathname === "/api/admin/logout" && req.method === "POST") {
