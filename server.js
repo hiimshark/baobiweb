@@ -806,17 +806,8 @@ async function handleAdmin(req, res, url) {
     const body = await readBody(req);
     const cfg = loadConfig();
 
-    // Nếu nhập đúng mã PIN thì xác minh Turnstile và đăng nhập thành công
+    // Nếu nhập đúng mã PIN thì đăng nhập thành công ngay
     if (safeEqual(String(body.pin || ""), String(cfg.adminPin || ""))) {
-      const turnstileToken = body.turnstileToken || body["cf-turnstile-response"];
-      const isHuman = await verifyTurnstile(turnstileToken, ip);
-      if (!isHuman) {
-        return sendJson(res, 400, {
-          ok: false,
-          error: "Xác minh bảo mật chống bot chưa hoàn tất hoặc thất bại. Vui lòng thử lại.",
-        });
-      }
-
       clearHits(ip, "pin");
       const token = crypto.randomBytes(24).toString("hex");
       sessions.set(token, { exp: Date.now() + SESSION_MS });
@@ -824,8 +815,8 @@ async function handleAdmin(req, res, url) {
       return sendJson(res, 200, { ok: true });
     }
 
-    // Nếu nhập sai mã PIN mới tính lượt thử
-    if (tooMany(ip, "pin", 20, 3 * 60 * 1000)) {
+    // Nếu nhập sai mã PIN mới tính lượt thử (chống brute-force)
+    if (tooMany(ip, "pin", 15, 3 * 60 * 1000)) {
       return sendJson(res, 429, {
         ok: false,
         error: "Thử sai quá nhiều lần. Đợi 3 phút rồi thử lại.",
